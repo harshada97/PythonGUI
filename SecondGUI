@@ -1,0 +1,80 @@
+from tkinter import Tk,Button,Label,Entry,LEFT,StringVar,W,N,E,S,Frame,Radiobutton,Checkbutton,IntVar,ACTIVE,filedialog
+
+window=Tk()
+usernameval=StringVar()
+passwordval=StringVar()
+dataval=StringVar()
+
+def ShowDialogs(method):
+     if method == 1:
+        ret = filedialog.askopenfilename()
+        print(ret)
+
+
+
+
+
+def sumbmitForm():
+    print("Username : "+usernameval.get())
+    print("Password : "+passwordval.get())
+    print("data     : "+dataval.get())
+    if val_1.get()==1:
+        print("DNN : Yes")
+    else:
+        print("DNN : No")
+
+    if val_2.get()==1:
+        print("CNN : Yes")
+    else:
+        print("CNN : No")
+
+    if val_3.get()==1:
+        print("RNN : Yes")
+    else:
+        print("RNN : No")
+    print("Submit")
+
+label_username=Label(window,text="Username : ").pack(padx=15,pady=5,anchor=W)
+
+username=Entry(window,textvariable=usernameval).pack(padx=15,pady=5,anchor=W)
+
+#for setting default value
+usernameval.set("Harshada")
+
+label_password=Label(window,text="Password : ").pack(padx=15,pady=5,anchor=W)
+password=Entry(window,textvariable=passwordval).pack(padx=15,pady=5,anchor=W)
+passwordval.set("hello")
+"""
+label_data=Label(window,text="select data  for testing: ").pack(padx=15,pady=5,anchor=W)
+data=Entry(window,textvariable=dataval).pack(padx=15,pady=5,anchor=W)
+
+label_data=Label(window,text="select data for training: ").pack(padx=15,pady=5,anchor=W)
+data=Entry(window,textvariable=dataval).pack(padx=15,pady=5,anchor=W)
+"""
+
+frame=Frame(window,bg="#1B2631")
+frame.pack(fill="both",expand=True)
+button9=Button(frame,text="File Choose for trining",padx=10,pady=10,fg="red",command=lambda:ShowDialogs(9))
+button9.grid(row=2,column=0,sticky="nsew",padx=10,pady=10)
+
+frame=Frame(window,bg="#1B2631")
+frame.pack(fill="both",expand=True)
+button1=Button(frame,text="File Choose for testing",padx=10,pady=10,fg="red",command=lambda:ShowDialogs(9))
+button1.grid(row=2,column=0,sticky="nsew",padx=10,pady=10)
+
+val_1=IntVar()
+val_2=IntVar()
+val_3=IntVar()
+
+label_method=Label(window,text="method : ").pack(padx=15,pady=5,anchor=W)
+
+check_button_1=Checkbutton(window,text="CNN",variable=val_1).pack()
+check_button_2=Checkbutton(window,text="DNN",variable=val_2).pack()
+check_button_3=Checkbutton(window,text="RNN",variable=val_3).pack()
+val_1.set(1)
+
+
+submit=Button(window,text="Submit",command=sumbmitForm()).pack(padx=15,pady=5,anchor=W)
+
+
+window.mainloop()
